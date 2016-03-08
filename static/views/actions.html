@@ -22,7 +22,7 @@
         <h4 class="modal-title">{{projectId}} logs</h4>
       </div>
       <div class="modal-body combined-logs">
-        <span class="text-left combined-logs-line " ng-repeat="line in logs"><span class="logs-{{line.color}}">{{line.container}}:</span> {{line.text}}</span>
+        <span class="text-left combined-logs-line " ng-repeat="line in logs"><span class="logs-{{line.color}}">{{line.container}}:</span> <span ng-bind-html="line.text | ansiToHtml | unsafe"></span></span>
       </div>
       <div class="modal-footer">
         <button ng-click="combinedLogs()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> refresh</button>

@@ -42,4 +42,12 @@ angular
       return sLimit.length < sTrim.length ? sLimit + '...' : sLimit;
     };
 
+  })
+  .filter('unsafe', function($sce) {
+    return $sce.trustAsHtml;
+  })
+  .filter('ansiToHtml', function () {
+    return function (txt) {
+      return ansi_up.ansi_to_html(txt);
+    }
   });
