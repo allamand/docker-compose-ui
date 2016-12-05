@@ -2,6 +2,26 @@
 
 angular.module('composeUiApp')
   .constant('pageSize', 10)
+  .filter('filterActive', function () {
+    return function (projects, activeNames, activeOnly) {
+
+      if (activeOnly) {
+        var activeProjects = {};
+
+        _.each(projects, function (v, k) {
+          var normalizedId = k.toLowerCase().replace(/[^a-z0-9]/g, '');
+          var isActive = activeNames.indexOf(normalizedId) >= 0;
+          if (isActive) {
+            activeProjects[k] = v;
+          }
+        });
+        return activeProjects;
+
+      } else {
+        return projects;
+      }
+    };
+  })
   .filter('filterByPage', function (pageSize) {
     return function (projects, page) {
       var filteredProjects = {};
